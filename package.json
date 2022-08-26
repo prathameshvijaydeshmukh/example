@@ -1,0 +1,16 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rangel stoilov",
+  "license": "MIT",
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+    "chromedriver": "^104.0.0",
+    "selenium-webdriver": "^4.4.0"
+  }
+}
