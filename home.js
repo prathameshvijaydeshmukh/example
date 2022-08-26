@@ -4,8 +4,8 @@ const swd = require("selenium-webdriver");
 const browser = new swd.Builder();
 const tab1 = browser.forBrowser("chrome").build();
 
-const tabOpen = tab1.get("https://app.staging.admavin.com/home");
-tabOpen
+const homeTabOpen = tab1.get("https://app.staging.admavin.com/home");
+homeTabOpen
   .then(function () {
     // Timeout to wait if connection is slow
     const findTimeOut = tab1.manage().setTimeouts({
