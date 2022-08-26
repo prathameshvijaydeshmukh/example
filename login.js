@@ -17,7 +17,7 @@ tabToOpen
   .then(function () {
     // Timeout to wait if connection is slow
     const findTimeOutP = tab.manage().setTimeouts({
-      implicit: 10000, // 10 seconds
+      implicit: 100000, // 10 seconds
     });
     return findTimeOutP;
   })
@@ -59,42 +59,47 @@ tabToOpen
   })
   .then(function () {
     // console.log("testing", siteUploadTab);/////////
-    siteUploadTabFn(siteUploadTab);
-    tab.get("https://app.staging.admavin.com/site-upload");
+    // siteUploadTabFn(siteUploadTab);
     console.log("Successfully signed in ADMAVIN!");
+    tab.get("https://app.staging.admavin.com/site-upload");
+  })
+  .catch(function (err) {
+    console.log("Error", err, "occurred!");
+  })
+  .then(function () {
+    // Timeout to wait if connection is slow
+    const findTime = tab.manage().setTimeouts({
+      implicit: 100000, // 10 seconds
+    });
+    return findTime;
+  })
+  .then(function () {
+    const promiseUploadTemplate = tab.findElement(
+      // swd.By.xpath("//button[text()='Upload Template']")
+      swd.By.xpath("//button[text()='Upload Template']")
+    );
+    console.log("Upload Template automate sucessfully");
+    console.log("promiseUploadTemplate", promiseUploadTemplate);
+    return promiseUploadTemplate;
+  })
+  .then(function (uploadExcelBtn) {
+    const promiseUploadTemplateExcel = uploadExcelBtn.click();
+    console.log("Upload Excel automate sucessfully");
+    return promiseUploadTemplateExcel;
+  })
+  .then(function () {
+    console.log("Successfully Excel - Upload  in ADMAVIN!");
   })
   .catch(function (err) {
     console.log("Error", err, "occurred!");
   });
+// .catch(function (err) {
+//   console.log("Error", err, "occurred!");
+// });
 
-const siteUploadTab = tab.get("https://app.staging.admavin.com/site-upload");
-function siteUploadTabFn(siteUploadTab) {
-  siteUploadTab
-    .then(function () {
-      // Timeout to wait if connection is slow
-      const findTime = tab.manage().setTimeouts({
-        implicit: 10000, // 10 seconds
-      });
-      return findTime;
-    })
-    .then(function () {
-      console.log("Upload Template automate sucessfully");
-      const promiseUploadTemplate = tab.findElement(
-        // swd.By.xpath("//button[text()='Upload Template']")
-        swd.By.xpath("//button[text()='Upload Template']")
-      );
-      console.log("promiseUploadTemplate", promiseUploadTemplate);
-      return promiseUploadTemplate;
-    })
-    .then(function (uploadExcelBtn) {
-      const promiseUploadTemplateExcel = uploadExcelBtn.click();
-      return promiseUploadTemplateExcel;
-    })
-    .then(function () {
-      console.log("Successfully signed in ADMAVIN!");
-    })
-    .catch(function (err) {
-      console.log("Error", err, "occurred!");
-    });
-}
+// const siteUploadTab = tab.get("https://app.staging.admavin.com/site-upload");
+// // function siteUploadTabFn(siteUploadTab) {
+// siteUploadTab
+
+// }
 //
