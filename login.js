@@ -17,7 +17,7 @@ tabToOpen
   .then(function () {
     // Timeout to wait if connection is slow
     const findTimeOutP = tab.manage().setTimeouts({
-      implicit: 100000, // 10 seconds
+      implicit: 10000, // 10 seconds
     });
     return findTimeOutP;
   })
@@ -63,13 +63,13 @@ tabToOpen
     console.log("Successfully signed in ADMAVIN!");
     tab.get("https://app.staging.admavin.com/site-upload");
   })
-  .catch(function (err) {
-    console.log("Error", err, "occurred!");
-  })
+  // .catch(function (err) {
+  //   console.log("Error", err, "occurred!");
+  // })
   .then(function () {
     // Timeout to wait if connection is slow
     const findTime = tab.manage().setTimeouts({
-      implicit: 100000, // 10 seconds
+      implicit: 10000, // 10 seconds
     });
     return findTime;
   })
@@ -93,6 +93,7 @@ tabToOpen
   .catch(function (err) {
     console.log("Error", err, "occurred!");
   });
+
 // .catch(function (err) {
 //   console.log("Error", err, "occurred!");
 // });
