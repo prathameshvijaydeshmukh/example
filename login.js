@@ -90,6 +90,73 @@ tabToOpen
   .then(function () {
     console.log("Successfully Excel - Upload  in ADMAVIN!");
   })
+  //.then(function () {
+  // console.log("responce", responce);
+  // const compainId = "";
+  // tab.get(`https://app.staging.admavin.com/campaign/${compainId}`);
+  // console.log("prrrrrr");
+  // /**
+  //  * Utility function for Delay / Sleep - time in milliseconds
+  //  */
+  //   function sleep(time) {
+  //     console.log("Sleeping for : ", time);
+  //     return new Promise((resolve) => setTimeout(resolve, time));
+  //   }
+  //   async function lookForDom() {
+  //     console.log("test");
+  //     const loops = 30;
+  //     let i = 1;
+  //     while (i <= loops) {
+  //       console.log("loop : ", i);
+
+  //       // Check for Dom
+  //       const checkForUpload = tab.findElement(
+  //         swd.By.xpath("//p[contains(@class,'text-success')]")
+  //       );
+  //       console.log("checkForUpload=", checkForUpload);
+  //       const isDomFound = i == 5;
+  //       console.log("isDomFound=", isDomFound);
+  //       // Dom not found case
+  //       if (!isDomFound) {
+  //         await sleep(5000);
+  //         i++;
+  //         continue;
+  //       }
+  //       // Dom found case
+
+  //       console.log("Dome Found");
+  //       break;
+  //     }
+  //     console.log("test end");
+  //   }
+  //   lookForDom();
+  // })
+  .then(function () {
+    console.log("GenrateReport!");
+    tab.get(
+      "https://app.staging.admavin.com/campaign/630dcdff1a4a335d4b3bbb23/summary"
+    );
+  })
+  .then(function () {
+    // Timeout to wait if connection is slow
+    const findTime = tab.manage().setTimeouts({
+      implicit: 10000, // 10 seconds
+    });
+    return findTime;
+  })
+  .then(function () {
+    const genrateReport = tab.findElement(
+      swd.By.xpath("//button[text()='Generate Report']")
+    );
+    console.log("Genrate report automate sucessfully");
+    console.log("genrateReport", genrateReport);
+    return genrateReport;
+  })
+  .then(function (genratereportBtn) {
+    const genratereport = genratereportBtn.click();
+    console.log("GenrateReport automate sucessfully");
+    return genratereport;
+  })
   .catch(function (err) {
     console.log("Error", err, "occurred!");
   });
